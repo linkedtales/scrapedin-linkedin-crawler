@@ -3,8 +3,9 @@ const saveProfile = require('./saveProfile')
 const logger = require('./logger')
 
 
+
 const rootProfiles = [
-  /* place linkedin profile links here! */
+  /* linkedin profiles to start crawling here!! */
 ]
 
 const crawledProfiles = []
@@ -20,16 +21,27 @@ const crawlProfile = async(profileScraper, profileUrls, depth = 0) => {
   let relatedProfilesToCrawl = []
 
   for(let i = 0; i < newProfiles.length; i++) {
-    try{
+    try {
       const profile = await profileScraper("https://www.linkedin.com/in/" + newProfiles[i])
-
       await saveProfile(newProfiles[i] + ".json", profile)
       logger.info(`new ${profile.peopleAlsoViewed.length} profile(s) found for id:${newProfiles[i]} on depth:${depth}`)
       logger.info(`saved profile ${newProfiles[i]}: ${i} of ${newProfiles.length - 1} on depth:${depth}`)
 
       crawledProfiles.push(newProfiles[i])
-      relatedProfilesToCrawl = relatedProfilesToCrawl.concat(profile.peopleAlsoViewed.map(({ user }) => user))
-    } catch (e) {
+
+      const profilesToCrawl = profile.peopleAlsoViewed.filter(({ text }) => {
+        const t = text.toLowerCase()
+
+        if(t.includes("engineer")) return true
+        if(t.includes("developer")) return true
+        if(t.includes("hacker")) return true
+        if(t.includes("programm")) return true
+
+        return false
+      }).map(({ user }) => user)
+
+      relatedProfilesToCrawl = relatedProfilesToCrawl.concat(profilesToCrawl)
+    } catch(e) {
       logger.error(`error on crawling profile: ${newProfiles[i]} \n ${e}`)
     }
   }
@@ -46,5 +58,5 @@ const getProfileIdFromUrl = (url) => {
   return id
 }
 
-scrapedin({ email: '', password: '', isHeadless: false, hasToLog: true })
+scrapedin({ email: '', password: '', isHeadless: true, hasToLog: true })
   .then((profileScraper) => crawlProfile(profileScraper, rootProfiles) )
