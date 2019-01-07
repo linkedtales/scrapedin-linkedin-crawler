@@ -1,0 +1,23 @@
+{
+  "name": "scrapedin-crawler",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leonardiwagner/scrapedin-linkedin-crawler.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leonardiwagner/scrapedin-linkedin-crawler/issues"
+  },
+  "homepage": "https://github.com/leonardiwagner/scrapedin-linkedin-crawler#readme",
+  "dependencies": {
+    "scrapedin": "git+https://github.com/leonardiwagner/scrapedin-linkedin-scraper.git"
+  }
+}
