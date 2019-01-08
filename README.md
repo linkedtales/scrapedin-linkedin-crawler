@@ -1,5 +1,8 @@
 Scrapedin Linkedin Crawler
 =======
+[![Build Status](https://travis-ci.org/leonardiwagner/scrapedin-linkedin-crawler.svg?branch=master)](https://travis-ci.org/leonardiwagner/scrapedin-linkedin-crawler)
+[![Coverage Status](https://coveralls.io/repos/github/leonardiwagner/scrapedin-linkedin-crawler/badge.svg?branch=master)](https://coveralls.io/github/leonardiwagner/scrapedin-linkedin-crawler?branch=master)
+
 Crawls multiple linkedin public profiles based on initial given profiles. Unlikely other crawlers, Scrapedin Crawler is currently working for the new 2019 website. Each crawled profile is scraped using:  [scrapedin, a profile scraper library](https://github.com/leonardiwagner/scrapedin).
 
 ### How to use
