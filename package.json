@@ -5,10 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index",
-    "test": "mocha src/**.test.js",
+    "test": "nyc mocha src/**.test.js",
     "lint": "standard --fix 'src/*.js' --env mocha",
-    "coverage": "nyc npm test",
-    "coverage:report": "nyc --reporter=lcov npm test"
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
