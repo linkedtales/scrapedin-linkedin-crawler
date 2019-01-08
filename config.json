@@ -1,0 +1,12 @@
+{
+  "email": "",
+  "password": "",
+  "relatedProfilesKeywords": ["engineer", "developer", "programmer"],
+  "maxConcurrentCrawlers": 5,
+  "saveDirectory": "./crawledProfiles",
+  "hasToLog": false,
+  "proxyAddress": null,
+  "rootProfiles": [
+    "https://www.linkedin.com/in/profiles-that-will-start-crawler/"
+  ]
+}

@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index"
+    "start": "node src/index",
+    "test": "mocha src/**.test.js",
+    "lint": "standard --fix 'src/*.js' --env mocha",
+    "coverage": "nyc npm test",
+    "coverage:report": "nyc --reporter=lcov npm test"
   },
   "repository": {
     "type": "git",
@@ -19,5 +23,12 @@
   "homepage": "https://github.com/leonardiwagner/scrapedin-linkedin-crawler#readme",
   "dependencies": {
     "scrapedin": "git+https://github.com/leonardiwagner/scrapedin-linkedin-scraper.git"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "faker": "^4.1.0",
+    "mocha": "^5.2.0",
+    "sinon": "^7.2.2",
+    "standard": "^12.0.1"
   }
 }
