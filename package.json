@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/leonardiwagner/scrapedin-linkedin-crawler#readme",
   "dependencies": {
-    "scrapedin": "git+https://github.com/leonardiwagner/scrapedin-linkedin-scraper.git"
+    "scrapedin": "^1.0.1"
   },
   "devDependencies": {
     "chai": "^4.2.0",

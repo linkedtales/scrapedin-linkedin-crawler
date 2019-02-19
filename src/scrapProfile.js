@@ -10,12 +10,12 @@ module.exports = async (profileScraper, profileUrl, injection) => {
     extractRelatedProfiles,
     saveProfile,
     logger,
-    getIdFromProfileUrl
+    getProfileIdFromUrl
   } = Object.assign({}, dependencies, injection)
 
   try {
-    const profileId = getIdFromProfileUrl(profileUrl)
-    const profile = await profileScraper('https://www.linkedin.com/in/' + profileId)
+    const profileId = getProfileIdFromUrl(profileUrl)
+    const profile = await profileScraper('https://www.linkedin.com/in/' + profileId, 5000)
 
     await saveProfile(profileId + '.json', profile)
 
