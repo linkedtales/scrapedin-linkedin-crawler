@@ -1,6 +1,6 @@
 {
   "name": "scrapedin-crawler",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/leonardiwagner/scrapedin-linkedin-crawler#readme",
   "dependencies": {
-    "scrapedin": "^1.0.1"
+    "scrapedin": "^1.0.3"
   },
   "devDependencies": {
     "chai": "^4.2.0",
