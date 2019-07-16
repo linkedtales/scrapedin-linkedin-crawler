@@ -2,6 +2,7 @@ const dependencies = {
   extractRelatedProfiles: require('./extractRelatedProfiles'),
   saveProfile: require('./saveProfile'),
   logger: require('./logger'),
+  config: require('../config.json'),
   getProfileIdFromUrl: require('./getIdFromProfileUrl')
 }
 
@@ -10,12 +11,13 @@ module.exports = async (profileScraper, profileUrl, injection) => {
     extractRelatedProfiles,
     saveProfile,
     logger,
-    getProfileIdFromUrl
+    getProfileIdFromUrl,
+    config
   } = Object.assign({}, dependencies, injection)
 
   try {
     const profileId = getProfileIdFromUrl(profileUrl)
-    const profile = await profileScraper('https://www.linkedin.com/in/' + profileId, 5000)
+    const profile = await profileScraper('https://www.linkedin.com/in/' + profileId, config.profileLoadWaitTime)
 
     await saveProfile(profileId + '.json', profile)
 

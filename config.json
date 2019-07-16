@@ -1,12 +1,18 @@
 {
   "email": "",
   "password": "",
-  "relatedProfilesKeywords": ["engineer", "developer", "programmer"],
-  "maxConcurrentCrawlers": 5,
+  "relatedProfilesKeywords": [],
+  "maxConcurrentCrawlers": 2,
+  "profileLoadWaitTime": 5000,
   "saveDirectory": "./crawledProfiles",
-  "hasToLog": false,
+  "puppeteerArgs": { "args": ["--no-sandbox"] },
+  "isHeadless": true,
+  "hasToLog": true,
   "proxyAddress": null,
   "rootProfiles": [
-    "https://www.linkedin.com/in/profiles-that-will-start-crawler/"
+    "https://www.linkedin.com/in/place/",
+    "https://www.linkedin.com/in/here/",
+    "https://www.linkedin.com/in/profiles/",
+    "https://www.linkedin.com/in/to-start-the-crawler/"
   ]
 }

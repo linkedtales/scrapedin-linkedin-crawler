@@ -27,7 +27,13 @@ scrapProfile
 
 describe('crawler', () => {
   it('should crawl', async () => {
-    await crawler(profileScraper, rootProfiles, { scrapProfile })
+    crawler(profileScraper, rootProfiles, { scrapProfile })
+
+    await new Promise((resolve) => {
+      setInterval(() => {
+        resolve()
+      }, 9000)
+    })
 
     assert.callCount(scrapProfile, 4)
   }).timeout(10000)

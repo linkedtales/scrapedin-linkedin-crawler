@@ -4,14 +4,16 @@ const dependencies = {
 module.exports = (profile, injection) => {
   const { relatedProfilesKeywords } = injection.config || dependencies.config
 
+
+
   return profile.peopleAlsoViewed.filter(({ text }) => {
+    if(!relatedProfilesKeywords.length) return true
+
     if (text) {
       const t = text.toLowerCase()
+      const hasFound = relatedProfilesKeywords.find((keyword) => t.includes(keyword.toLowerCase().trim()))
 
-      const hasFound = relatedProfilesKeywords.find(
-        (keyword) => t.includes(keyword))
-
-      if (hasFound) { return true }
+      return hasFound
     }
 
     return false

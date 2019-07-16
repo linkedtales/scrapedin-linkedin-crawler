@@ -5,12 +5,10 @@ const crawl = require('./crawler')
 const config = {
   email: process.env.SCRAPEDIN_EMAIL || configFile.email,
   password: process.env.SCRAPEDIN_PASSWORD || configFile.password,
-  relatedProfilesKeywords: configFile.relatedProfilesKeywords,
-  maxConcurrentCrawlers: configFile.maxConcurrentCrawlers,
   hasToLog: configFile.hasToLog,
-  rootProfiles: configFile.rootProfiles,
-  isHeadless: false
+  isHeadless: configFile.isHeadless,
+  puppeteerArgs: configFile.puppeteerArgs
 }
 
 scrapedin(config)
-  .then((profileScraper) => crawl(profileScraper, config.rootProfiles))
+  .then((profileScraper) => crawl(profileScraper, configFile.rootProfiles))
