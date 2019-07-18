@@ -18,7 +18,7 @@ Crawls multiple linkedin public profiles based on initial given profiles. Unlike
 5. `npm start` to start crawler
 
 ### Tips
-The profiles will be stored on the directory configured at `config.json` as individual file per profile. If you want to do something else, just rewrite the `src/saveProfile.js` function.
+The profiles will be stored on the directory configured at `config.json` as individual file per profile. If you want to do something else (as saving on a database), just rewrite the `src/saveProfile.js` function.
 
 ### Contribuiting
 Please feel free to contribute with this project, just always open an issue before submiting a PR.
