@@ -19,7 +19,7 @@ module.exports = async (profileScraper, profileUrl, injection) => {
     const profileId = getProfileIdFromUrl(profileUrl)
     const profile = await profileScraper('https://www.linkedin.com/in/' + profileId, config.profileLoadWaitTime)
 
-    await saveProfile(profileId + '.json', profile)
+    await saveProfile(profileId, profile)
 
     const related = await extractRelatedProfiles(profile, profileId)
     return related
