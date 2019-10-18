@@ -1,6 +1,7 @@
 {
   "email": "",
   "password": "",
+  "cookiesFile": "",
   "relatedProfilesKeywords": [],
   "maxConcurrentCrawlers": 2,
   "profileLoadWaitTime": 5000,

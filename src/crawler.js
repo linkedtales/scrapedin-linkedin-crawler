@@ -20,8 +20,13 @@ module.exports = async (profileScraper, rootProfiles, injection) => new Promise(
     parallelCrawlers++
     logger.info(`starting scraping: ${profileUrl}`)
 
-    const relatedProfiles = await scrapProfile(profileScraper, profileUrl)
-    nextProfilesToCrawl = nextProfilesToCrawl.concat(relatedProfiles)
+    try{
+      const relatedProfiles = await scrapProfile(profileScraper, profileUrl)
+      nextProfilesToCrawl = nextProfilesToCrawl.concat(relatedProfiles)
+    } catch (e) {
+      logger.error(`error on crawling profile: ${profileUrl} \n ${e}`)
+    }
+    
 
     logger.info(`finished scraping: ${profileUrl} , ${relatedProfiles.length} profile(s) found!`)
     parallelCrawlers--
