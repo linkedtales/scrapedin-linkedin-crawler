@@ -10,5 +10,11 @@ const config = {
   puppeteerArgs: configFile.puppeteerArgs
 }
 
+if(configFile.cookiesFile && configFile.cookiesFile.length) {
+  const fs = require('fs')
+  const cookies = fs.readFileSync(configFile.cookiesFile)
+  config.cookies = JSON.parse(cookies)
+}
+
 scrapedin(config)
   .then((profileScraper) => crawl(profileScraper, configFile.rootProfiles))

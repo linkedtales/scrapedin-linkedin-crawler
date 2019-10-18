@@ -15,15 +15,13 @@ module.exports = async (profileScraper, profileUrl, injection) => {
     config
   } = Object.assign({}, dependencies, injection)
 
-  try {
-    const profileId = getProfileIdFromUrl(profileUrl)
-    const profile = await profileScraper('https://www.linkedin.com/in/' + profileId, config.profileLoadWaitTime)
 
-    await saveProfile(profileId, profile)
+  const profileId = getProfileIdFromUrl(profileUrl)
+  const profile = await profileScraper('https://www.linkedin.com/in/' + profileId, config.profileLoadWaitTime)
 
-    const related = await extractRelatedProfiles(profile, profileId)
-    return related
-  } catch (e) {
-    logger.error(`error on crawling profile: ${profileUrl} \n ${e}`)
-  }
+  await saveProfile(profileId, profile)
+
+  const related = await extractRelatedProfiles(profile, profileId)
+  return related
+
 }
