@@ -1,6 +1,6 @@
 {
-  "email": "",
-  "password": "",
+  "email": "test@test.com",
+  "password": "test",
   "relatedProfilesKeywords": [],
   "maxConcurrentCrawlers": 2,
   "profileLoadWaitTime": 5000,
