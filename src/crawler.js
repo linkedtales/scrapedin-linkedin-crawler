@@ -13,7 +13,9 @@ module.exports = async (profileScraper, rootProfiles, injection) => new Promise(
   } = Object.assign({}, dependencies, injection)
 
   let currentProfilesToCrawl = rootProfiles
-  let nextProfilesToCrawl = []
+  let alreadyCrawledProfiles = new Set(rootProfiles)
+  let nextProfilesToCrawl = new Set()
+  let additionalProfiles = new Set()
 
   let parallelCrawlers = 0
   const crawl = async (profileUrl) => {
@@ -22,7 +24,10 @@ module.exports = async (profileScraper, rootProfiles, injection) => new Promise(
 
     scrapProfile(profileScraper, profileUrl)
       .then((relatedProfiles) => {
-        nextProfilesToCrawl = nextProfilesToCrawl.concat(relatedProfiles)
+          additionalProfiles = difference(new Set(relatedProfiles), alreadyCrawledProfiles)
+	  logger.info(additionalProfiles)
+          nextProfilesToCrawl = union(nextProfilesToCrawl,
+                                      additionalProfiles)
 
         logger.info(`finished scraping: ${profileUrl} , ${relatedProfiles.length} profile(s) found!`)
         parallelCrawlers--
@@ -34,15 +39,34 @@ module.exports = async (profileScraper, rootProfiles, injection) => new Promise(
   }
 
   setInterval(() => {
-    if (currentProfilesToCrawl.length === 0 && nextProfilesToCrawl.length === 0) {
+    if (currentProfilesToCrawl.length === 0 && nextProfilesToCrawl.size === 0) {
       logger.info('there is no profiles to crawl right now...')
     } else if (currentProfilesToCrawl.length === 0) {
-      logger.info(`a depth of crawling was finished, starting a new depth with ${nextProfilesToCrawl.length} profile(s)`)
-      currentProfilesToCrawl = nextProfilesToCrawl
-      nextProfilesToCrawl = []
+      logger.info(`a depth of crawling was finished, starting a new depth with ${nextProfilesToCrawl.size} profile(s)`)
+	currentProfilesToCrawl = Array.from(nextProfilesToCrawl)
+	alreadyCrawledProfiles = union(alreadyCrawledProfiles, new Set(currentProfilesToCrawl))
+      nextProfilesToCrawl = new Set()
     } else if (parallelCrawlers < config.maxConcurrentCrawlers) {
       const profileUrl = currentProfilesToCrawl.shift()
       crawl(profileUrl)
     }
   }, WORKER_INTERVAL_MS)
 })
+
+
+function union(setA, setB) {
+    let _union = new Set(setA)
+    for (let elem of setB) {
+        _union.add(elem)
+    }
+    return _union
+}
+
+
+function difference(setA, setB) {
+    let _difference = new Set(setA)
+    for (let elem of setB) {
+        _difference.delete(elem)
+    }
+    return _difference
+}
