@@ -24,8 +24,8 @@ module.exports = async (profileScraper, rootProfiles, injection) => new Promise(
 
     scrapProfile(profileScraper, profileUrl)
       .then((relatedProfiles) => {
-          additionalProfiles = difference(new Set(relatedProfiles), alreadyCrawledProfiles)
-	  logger.info(additionalProfiles)
+          additionalProfiles = difference(new Set(relatedProfiles),
+					  alreadyCrawledProfiles)
           nextProfilesToCrawl = union(nextProfilesToCrawl,
                                       additionalProfiles)
 
@@ -44,7 +44,8 @@ module.exports = async (profileScraper, rootProfiles, injection) => new Promise(
     } else if (currentProfilesToCrawl.length === 0) {
       logger.info(`a depth of crawling was finished, starting a new depth with ${nextProfilesToCrawl.size} profile(s)`)
 	currentProfilesToCrawl = Array.from(nextProfilesToCrawl)
-	alreadyCrawledProfiles = union(alreadyCrawledProfiles, new Set(currentProfilesToCrawl))
+	alreadyCrawledProfiles = union(alreadyCrawledProfiles,
+				       nextProfilesToCrawl)
       nextProfilesToCrawl = new Set()
     } else if (parallelCrawlers < config.maxConcurrentCrawlers) {
       const profileUrl = currentProfilesToCrawl.shift()
