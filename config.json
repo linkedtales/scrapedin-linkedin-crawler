@@ -16,5 +16,5 @@
     "https://www.linkedin.com/in/profiles/",
     "https://www.linkedin.com/in/to-start-the-crawler/"
   ],
-  "avoidAlreadyCrawled": true
+  "avoidAlreadyCrawled": false
 }
