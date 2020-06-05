@@ -4,7 +4,6 @@ const dependencies = {
   scrapProfile: require('./scrapProfile')
 }
 
-const WORKER_INTERVAL_MS = 1000
 
 module.exports = async (profileScraper, rootProfiles, injection) => new Promise((resolve) => {
   const {
@@ -12,6 +11,7 @@ module.exports = async (profileScraper, rootProfiles, injection) => new Promise(
     scrapProfile
   } = Object.assign({}, dependencies, injection)
 
+  const WORKER_INTERVAL_MS = config.workerIntervalWaitTime
   let currentProfilesToCrawl = rootProfiles
   let nextProfilesToCrawl = []
 
