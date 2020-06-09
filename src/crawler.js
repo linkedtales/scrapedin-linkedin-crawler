@@ -5,7 +5,6 @@ const dependencies = {
   avoidAlreadyCrawled: require('./avoidAlreadyCrawled'),
 }
 
-const WORKER_INTERVAL_MS = 1000
 
 module.exports = async (profileScraper, rootProfiles, injection) => new Promise((resolve) => {
   const {
@@ -14,7 +13,10 @@ module.exports = async (profileScraper, rootProfiles, injection) => new Promise(
     avoidAlreadyCrawled
   } = Object.assign({}, dependencies, injection)
 
+
+  const WORKER_INTERVAL_MS = config.workerIntervalWaitTime
   avoidAlreadyCrawled.updateAlreadyCrawledProfiles(rootProfiles)
+
   let currentProfilesToCrawl = rootProfiles
   let nextProfilesToCrawl = []
   

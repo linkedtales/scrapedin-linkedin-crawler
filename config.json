@@ -16,5 +16,6 @@
     "https://www.linkedin.com/in/profiles/",
     "https://www.linkedin.com/in/to-start-the-crawler/"
   ],
+  "interProfileWaitTime": 1000,
   "avoidAlreadyCrawled": false
 }
