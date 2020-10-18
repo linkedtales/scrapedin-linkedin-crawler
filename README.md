@@ -12,7 +12,7 @@ Crawls multiple linkedin public profiles based on initial given profiles. Unlike
    * keywords (optional): set words to filter next profiles to be crawled
    * root profiles: linkedin profiles urls that will start the crawler
 3. Ensure you have Node.js >= 7.6 in your machine:
-    * [You can download on offical website](https://nodejs.org/)
+    * [You can download on official website](https://nodejs.org/)
     * [Or use a NVM: aversion manager to use multiple Node.js versions on same machine](https://github.com/creationix/nvm#installation  )   
 4. `npm install` to install dependencies
 5. `npm start` to start crawler
@@ -20,8 +20,8 @@ Crawls multiple linkedin public profiles based on initial given profiles. Unlike
 ### Tips
 The profiles will be stored on the directory configured at `config.json` as individual file per profile. If you want to do something else (as saving on a database), just rewrite the `src/saveProfile.js` function.
 
-### Contribuiting
-Please feel free to contribute with this project, just always open an issue before submiting a PR.
+### Contributing
+Please feel free to contribute with this project, just always open an issue before submitting a PR.
 
 ### License
 
